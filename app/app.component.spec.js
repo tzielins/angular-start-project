@@ -28,6 +28,7 @@ System.register(['./app.component', './hero.service'], function(exports_1, conte
                     component.postRegistration(promise);
                     promise.then(function (h) {
                         expect(component.selectedHero).toBe(hero);
+                        //this assertion does not pass, probably gettingHeros is not done yet
                         expect(component.heroes.indexOf(hero)).toBeGreaterThan(0);
                         done();
                     });
