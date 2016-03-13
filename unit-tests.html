@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>1st Jasmine Tests</title>
+    <link rel="stylesheet" href="node_modules/jasmine-core/lib/jasmine-core/jasmine.css">
+    <script src="node_modules/jasmine-core/lib/jasmine-core/jasmine.js"></script>
+    <script src="node_modules/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
+    <script src="node_modules/jasmine-core/lib/jasmine-core/boot.js"></script>
+
+    <!-- IE required polyfills, in this exact order -->
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+
+
+
+    <!-- Angular 2 testing dependencies -->
+    <script src="https://code.angularjs.org/2.0.0-beta.7/testing.dev.js"></script>
+
+</head>
+<body>
+
+<h1>Only for individual tests, use npm test for running all</h1>
+
+
+<script>
+    // #2. Configure SystemJS to use the .js extension
+    //     for imports from the app folder
+    System.config({
+        packages: {
+            'app': {defaultExtension: 'js'}
+        }
+    });
+
+    Promise.all([
+        System.import('app/hero.service.spec'),
+        System.import('app/app.component.spec')        
+    ]).then(window.onload)
+      .catch(console.error.bind(console));
+
+
+</script>
+
+
+</body>
+</html>
