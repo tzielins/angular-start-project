@@ -12,6 +12,7 @@ import {
     tick,
     flushMicrotasks
 } from 'angular2/testing';
+import {TimerWrapper, PromiseWrapper} from 'angular2/src/facade/async';
 
 describe("checkign promises testing",()=>{
 
@@ -39,7 +40,7 @@ describe("checkign promises testing",()=>{
 
     });
 
-    it('Promises fulfilled after done',done=>{
+    xit('Promises fulfilled after done',done=>{
 
         let x = 1;
         let y = 2;
@@ -62,7 +63,7 @@ describe("checkign promises testing",()=>{
 
     });
 
-    xit('Promises fulfilled by using only fakeAsync',fakeAsync((): void => {
+    it('Promises fulfilled by flushMicrotasks',<any>fakeAsync(()  => {
 
         let x = 1;
         let y = 2;
@@ -74,41 +75,20 @@ describe("checkign promises testing",()=>{
             });
         };
 
-        let p = Promise.resolve(y);
+        let p = Promise.resolve(5);
 
         dealWithIt(p);
 
-        //promises to be resolved
-        expect(x).toBe(2);
-        expect(y).toBe(3);
-
-    }));
-
-    it('Promises fulfilled by flushMicrotasks',fakeAsync((): void => {
-
-        let x = 1;
-        let y = 2;
-
-        let dealWithIt = function(p:Promise<number>) {
-            p.then( v => {
-                x = v;
-                Promise.resolve(v).then( v=> {y = v+1; });
-            });
-        };
-
-        let p = Promise.resolve(y);
-
-        dealWithIt(p);
+        expect(x).toBe(1);
+        expect(y).toBe(2);
 
         flushMicrotasks();
-        //promises to be resolved
-        expect(x).toBe(2);
-        expect(y).toBe(3);
-
-
+        //valid if promise handling completed
+        expect(x).toBe(5);
+        expect(y).toBe(6);
     }));
 
-    it('Promises fulfilled by tick',fakeAsync((): void => {
+    it('Promises fulfilled by tick',<any>fakeAsync(()  => {
         let x = 1;
         let y = 2;
 
@@ -119,14 +99,18 @@ describe("checkign promises testing",()=>{
             });
         };
 
-        let p = Promise.resolve(y);
+        let p = Promise.resolve(5);
 
         dealWithIt(p);
 
+        expect(x).toBe(1);
+        expect(y).toBe(2);
+
         tick();
-        //promises to be resolved
-        expect(x).toBe(2);
-        expect(y).toBe(3);
+        //valid if promise handling completed
+        expect(x).toBe(5);
+        expect(y).toBe(6);
+
 
     }));
 
@@ -143,14 +127,14 @@ describe("checkign promises testing",()=>{
             });
         };
 
-        let p = Promise.resolve(y);
+        let p = Promise.resolve(3);
 
         dealWithIt(p);
 
         p.then( v => {
             //promises to be resolved
-            expect(x).toBe(2);
-            expect(y).toBe(3);
+            expect(x).toBe(3);
+            expect(y).toBe(4);
 
             done();
         }).catch(e => {
@@ -171,16 +155,16 @@ describe("checkign promises testing",()=>{
             });
         };
 
-        let p = Promise.resolve(y);
+        let p = Promise.resolve(3);
 
         dealWithIt(p).then( v => {
             console.log("V"+v);
             //promises to be resolved
-            expect(x).toBe(2);
-            expect(y).toBe(3);
+            expect(x).toBe(3);
+            expect(y).toBe(4);
 
             done();
         })
-    })
+    });
 
 });
