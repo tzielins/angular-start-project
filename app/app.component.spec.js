@@ -17,19 +17,21 @@ System.register(['./app.component', './hero.service'], function(exports_1, conte
                 beforeEach(function () {
                     service = new hero_service_1.HeroService();
                     component = new app_component_1.AppComponent(service);
+                    component.ngOnInit();
                 });
                 it("test setup", function () {
                     expect(component).not.toBeUndefined();
                 });
                 it("postRegistration sets selectedHero as registered one", function (done) {
-                    var hero = { "id": 100, "name": "BigBoss" };
-                    var promise = Promise.resolve(hero);
-                    component.ngOnInit();
+                    var promise = service.registerHero("Bosek"); //Promise.resolve(hero);
                     component.postRegistration(promise);
-                    promise.then(function (h) {
+                    promise.then(function (hero) {
                         expect(component.selectedHero).toBe(hero);
-                        //this assertion does not pass, probably gettingHeros is not done yet
                         expect(component.heroes.indexOf(hero)).toBeGreaterThan(0);
+                        done();
+                    }).catch(function (e) {
+                        console.log("Error: " + e);
+                        fail(e);
                         done();
                     });
                 });

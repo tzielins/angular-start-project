@@ -11,23 +11,24 @@ describe("AppComponent",()=>{
     beforeEach(()=>{
             service = new HeroService();
             component = new AppComponent(service);
-    })
+            component.ngOnInit();
+    });
 
     it("test setup",()=>{
         expect(component).not.toBeUndefined();
-    })
+    });
 
     it("postRegistration sets selectedHero as registered one",done =>{
-        let hero = <Hero>{"id": 100, "name": "BigBoss"};
-        let promise = Promise.resolve(hero);
-        component.ngOnInit();
-
+        let promise = service.registerHero("Bosek"); //Promise.resolve(hero);
         component.postRegistration(promise);
-        promise.then( h => {
+        promise.then( hero => {
             expect(component.selectedHero).toBe(hero);
-            //this assertion does not pass, probably gettingHeros is not done yet
             expect(component.heroes.indexOf(hero)).toBeGreaterThan(0);
+            done();
+        }).catch( e=> {
+            console.log("Error: "+e);
+            fail(e);
             done();
         })
     })
-})
+});

@@ -17,7 +17,7 @@
 
 
     <!-- Angular 2 testing dependencies -->
-    <script src="https://code.angularjs.org/2.0.0-beta.7/testing.dev.js"></script>
+    <script src="node_modules/angular2/bundles/testing.dev.js"></script>
 
 </head>
 <body>
@@ -36,7 +36,8 @@
 
     Promise.all([
         System.import('app/hero.service.spec'),
-        System.import('app/app.component.spec')        
+        System.import('app/app.component.spec'),
+        System.import('app/promise.spec')
     ]).then(window.onload)
       .catch(console.error.bind(console));
 
