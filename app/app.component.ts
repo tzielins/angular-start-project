@@ -2,6 +2,7 @@ import {Component, OnInit} from 'angular2/core';
 import {Hero} from './hero';
 import {HeroDetailComponent} from './hero-detail.component';
 import {HeroService} from './hero.service';
+import {TYPEAHEAD_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
   selector: 'my-app',
@@ -29,7 +30,7 @@ import {HeroService} from './hero.service';
   `,
   styleUrls:['app/app.component.css'],
   directives: [HeroDetailComponent],
-  providers: [HeroService]
+  providers: [HeroService,TYPEAHEAD_DIRECTIVES]
 })
 export class AppComponent implements OnInit {
   title = 'Tour of Heroes';

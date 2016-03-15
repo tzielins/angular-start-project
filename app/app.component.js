@@ -1,4 +1,4 @@
-System.register(['angular2/core', './hero-detail.component', './hero.service'], function(exports_1, context_1) {
+System.register(['angular2/core', './hero-detail.component', './hero.service', 'ng2-bootstrap/ng2-bootstrap'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './hero-detail.component', './hero.service'], 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, hero_detail_component_1, hero_service_1;
+    var core_1, hero_detail_component_1, hero_service_1, ng2_bootstrap_1;
     var AppComponent;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(['angular2/core', './hero-detail.component', './hero.service'], 
             },
             function (hero_service_1_1) {
                 hero_service_1 = hero_service_1_1;
+            },
+            function (ng2_bootstrap_1_1) {
+                ng2_bootstrap_1 = ng2_bootstrap_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -54,7 +57,7 @@ System.register(['angular2/core', './hero-detail.component', './hero.service'], 
                         template: "\n    <h1>{{title}}</h1>\n    <h2>My Heroes</h2>\n    <ul class=\"heroes\">\n      <li *ngFor=\"#hero of heroes\"\n        [class.selected]=\"hero === selectedHero\"\n        (click)=\"onSelect(hero)\">\n        <span class=\"badge\">{{hero.id}}</span> {{hero.name}}\n      </li>\n    </ul>\n    <!--<my-hero-detail [hero]=\"selectedHero\"></my-hero-detail>-->\n    <form>\n        <label for='hName'>New hero</label>\n        <input type=\"text\" class=\"form-control\" required\n            id=\"hName\"\n            placeholder=\"type hero name\"\n            ngControl=\"hName\"  #hName=\"ngForm\" >\n\n        <button type=\"button\" class=\"btn btn-default\" [disabled]=\"!hName.valid\" (click)=\"register(hName.value)\">Add new</button>\n        {{hName.value}}\n    </form>\n  ",
                         styleUrls: ['app/app.component.css'],
                         directives: [hero_detail_component_1.HeroDetailComponent],
-                        providers: [hero_service_1.HeroService]
+                        providers: [hero_service_1.HeroService, ng2_bootstrap_1.TYPEAHEAD_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [hero_service_1.HeroService])
                 ], AppComponent);

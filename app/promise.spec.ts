@@ -133,8 +133,8 @@ describe("checkign promises testing",()=>{
 
         p.then( v => {
             //promises to be resolved
-            expect(x).toBe(3);
-            expect(y).toBe(4);
+            expect(x).toBe(v);
+            expect(y).toBe(v+1);
 
             done();
         }).catch(e => {

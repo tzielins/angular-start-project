@@ -1,6 +1,8 @@
 <html>
 <head>
     <title>1st Jasmine Tests</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="node_modules/jasmine-core/lib/jasmine-core/jasmine.css">
     <script src="node_modules/jasmine-core/lib/jasmine-core/jasmine.js"></script>
     <script src="node_modules/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
@@ -14,7 +16,7 @@
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
 
-
+    <script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script>
 
     <!-- Angular 2 testing dependencies -->
     <script src="node_modules/angular2/bundles/testing.dev.js"></script>
@@ -31,6 +33,9 @@
     System.config({
         packages: {
             'app': {defaultExtension: 'js'}
+        },
+        map: {
+            'moment': 'node_modules/moment/moment.js'
         }
     });
 
